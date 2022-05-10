@@ -4,6 +4,7 @@ Multi-USRP recv and save to file
 # Contents
  * [Description](#description)
  * [Installation](#installation)
+ * [Post-Processing](#Post-Processing)
 
 # Description
 USRP_RX_MULTI_RECV is used to create multi::usrp object of multiple synched SDR to recevive samples to files (metadata + IQ).  
@@ -29,4 +30,9 @@ Example:
 ```sh
 ./rx_multi_receive --nsamps 1024 --rate 5e6 --args="addr0=10.10.23.2,addr1=10.10.23.3, … addr7=10.10.24.2" --subdev "A:0 B:0" --channels "0, 1, ... , 14, 15" --prefix "x310_`$now`_"  --sync "pps" --secs 5
 ```
-
+# Post-Processing
+The program saves two files each run: metadata + IQ_binary files. 
+To check information of Metadata:
+```sh
+more <metadata file name>
+```
