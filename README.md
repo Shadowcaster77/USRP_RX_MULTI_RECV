@@ -41,3 +41,11 @@ To have a quick view of binary file:
 hexdump -v -e '"%010_ad [" 2/4 " %f " " ]\n"' <binary file name>
 ```
 MATLAB post-processing is also being attached in the MATLAB_PostProcess folder, which the input file names is being hard-coded in the probram, users might need to make changes correspondingly on that. 
+For example in plot_w_delay.m:
+
+```sh
+fileID = fopen('file name');
+A = fread(fileID, 'float');
+areal = A([1:2:length(A)]);
+aimg  = A([2:2:length(A)]);
+```
