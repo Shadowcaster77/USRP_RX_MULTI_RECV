@@ -36,3 +36,8 @@ To check information of Metadata:
 ```sh
 more <metadata file name>
 ```
+To have a quick view of binary file:
+```sh
+hexdump -v -e '"%010_ad [" 2/4 " %f " " ]\n"' <binary file name>
+```
+MATLAB post-processing is also being attached in the MATLAB_PostProcess folder, which the input file names is being hard-coded in the probram, users might need to make changes correspondingly on that. 
