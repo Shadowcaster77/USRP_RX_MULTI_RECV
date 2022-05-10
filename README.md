@@ -82,7 +82,7 @@ while(num_acc_samps < total_num_samps){
       throw std::runtime_error(str(boost::format("Recv'd samples %i\nReceiver error %s") % num_acc_samps % md.strerror()));
 }
 ```
-where `samps_per_buff` can be set to a relatively small number or:
+where `samps_per_buff` can be set to a relatively small number as:
 ```
 smap_er_buff = rx_stream->get_max_num_smaps(); // which actually it can go over this max
 ```
