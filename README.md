@@ -9,8 +9,11 @@ Multi-USRP recv and save to file
 
 
 # Description
-This modified work is based on tutorials provifded by Nilanjan from WINLAB. Some improvements are made with syncing up multi USRPs. 
-USRP_RX_MULTI_RECV is used to create multi::usrp object of multiple synched SDR to recevive samples to files (metadata + IQ). This simple probram acts as an illustration to help users understand how multi::usrp works for developing more complicated programs as [Sounder](https://github.com/renew-wireless/RENEWLab/tree/develop)
+This modified work is based on tutorials provifded by Nilanjan from WINLAB. Some improvements are made with syncing up multi USRPs, exploring multi::usrp buffers and samps read with post-processing provided in MATLAB. 
+
+USRP_RX_MULTI_RECV is used to create multi::usrp object of multiple synched SDR to recevive samples to files (metadata + IQ). 
+
+This simple probram acts as an illustration to help users understand how multi::usrp works for developing more complicated programs as [Sounder](https://github.com/renew-wireless/RENEWLab/tree/develop)
 
 # Installation
 ### Dependencies:
