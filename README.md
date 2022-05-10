@@ -5,7 +5,7 @@ Multi-USRP recv and save to file
  * [Description](#description)
  * [Installation](#installation)
  * [Post-Processing](#Post-Processing)
- * [Further Notice](#Further Notice)
+ * [Further-Notice](#Further-Notice)
 
 
 # Description
@@ -51,6 +51,6 @@ A = fread(fileID, 'float');
 areal = A([1:2:length(A)]);
 aimg  = A([2:2:length(A)]);
 ```
-# Further Notice
+# Further-Notice
 
 
