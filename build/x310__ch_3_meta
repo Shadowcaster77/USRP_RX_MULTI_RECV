@@ -1,0 +1,13 @@
+channel              : 3
+mboard id            : X310
+mboard_serial        : 322A005
+mboard_name          : 
+rx_id                : UBX-160 v2 (0x007e)
+rx_subdev_name       : UBX RX
+rx_subdev_spec       : A:0 B:0
+total samples        : 1024000
+sample size          : 8
+RX frequency (MHz)   : 900
+RX sample rate (MHz) : 5
+RX gain (dB)         : 0
+RX antenna           : RX2
