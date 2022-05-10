@@ -9,9 +9,9 @@ Multi-USRP recv and save to file
 
 
 # Description
-This modified work is based on tutorials provifded by Nilanjan from WINLAB. Some improvements are made with syncing up multi USRPs, exploring multi::usrp buffers and samps read with post-processing provided in MATLAB. 
-
 USRP_RX_MULTI_RECV is used to create multi::usrp object of multiple synched SDR to recevive samples to files (metadata + IQ). 
+
+This modified work is based on tutorials provifded by Nilanjan from WINLAB. Some improvements are made with syncing up multi USRPs, exploring multi::usrp buffers and samps read with post-processing provided in MATLAB. 
 
 This simple probram acts as an illustration to help users understand how multi::usrp works for developing more complicated programs as [Sounder](https://github.com/renew-wireless/RENEWLab/tree/develop)
 
@@ -57,24 +57,28 @@ aimg  = A([2:2:length(A)]);
 ```
 # Further-Notice
 Some parts of the C++ code can be modified by users' intend
-The total_num_samps in the following can be set to arbitrary numers.
+The `samps_per_buff` in the following can be set to arbitrary numers.
+In the following implementation, the `samps_per_buff` is set to be equal to `total_num_samps`, which only reuslt in one recv() call throughtout
 ```
-//    while(num_acc_samps < total_num_samps)
-//    {
-      //receive multi channel buffers
-      size_t num_rx_samps = rx_stream->recv( MultiDeviceBufferPtrs.at(mdbp_idx++), samps_per_buff, md, timeout);
-      
-      //use a small timeout for subsequent packets
-      timeout = 0.1;
+//receive multi channel buffers
+size_t num_rx_samps = rx_stream->recv( MultiDeviceBufferPtrs.at(mdbp_idx++), samps_per_buff, md, timeout);
 
-//      handle the error code
-//      if (md.error_code == uhd::rx_metadata_t::ERROR_CODE_TIMEOUT) break;
-//      else if (md.error_code == uhd::rx_metadata_t::ERROR_CODE_OVERFLOW) continue;
-//      else if (md.error_code != uhd::rx_metadata_t::ERROR_CODE_NONE){
-//	throw std::runtime_error(str(boost::format("Recv'd samples %i\nReceiver error %s") % num_acc_samps % md.strerror()));
-//      }
+//use a small timeout for subsequent packets
+timeout = 0.1;
 ```
 Notice there is a limit (which depends on system) that the program can support, if the total number of samps users want to specify is going to be very large, the following revision is recommended:
 ```
+while(num_acc_samps < total_num_samps){
+      //receive multi channel buffers
+      size_t num_rx_samps = rx_stream->recv( MultiDeviceBufferPtrs.at(mdbp_idx++), samps_per_buff, md, timeout);
 
+      //use a small timeout for subsequent packets
+      timeout = 0.1;
+
+      handle the error code
+      if (md.error_code == uhd::rx_metadata_t::ERROR_CODE_TIMEOUT) break;
+      else if (md.error_code == uhd::rx_metadata_t::ERROR_CODE_OVERFLOW) continue;
+      else if (md.error_code != uhd::rx_metadata_t::ERROR_CODE_NONE){
+      throw std::runtime_error(str(boost::format("Recv'd samples %i\nReceiver error %s") % num_acc_samps % md.strerror()));
+}
 ```
