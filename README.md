@@ -9,7 +9,8 @@ Multi-USRP recv and save to file
 
 
 # Description
-USRP_RX_MULTI_RECV is used to create multi::usrp object of multiple synched SDR to recevive samples to files (metadata + IQ).  
+This modified work is based on tutorials provifded by Nilanjan from WINLAB. Some improvements are made with syncing up multi USRPs. 
+USRP_RX_MULTI_RECV is used to create multi::usrp object of multiple synched SDR to recevive samples to files (metadata + IQ). This simple probram acts as an illustration to help users understand how multi::usrp works for developing more complicated programs as [Sounder](https://github.com/renew-wireless/RENEWLab/tree/develop)
 
 # Installation
 ### Dependencies:
@@ -53,6 +54,7 @@ aimg  = A([2:2:length(A)]);
 ```
 # Further-Notice
 Some parts of the C++ code can be modified by users' intend
+The total_num_samps in the following can be set to arbitrary numers.
 ```
 //    while(num_acc_samps < total_num_samps)
 //    {
@@ -68,4 +70,8 @@ Some parts of the C++ code can be modified by users' intend
 //      else if (md.error_code != uhd::rx_metadata_t::ERROR_CODE_NONE){
 //	throw std::runtime_error(str(boost::format("Recv'd samples %i\nReceiver error %s") % num_acc_samps % md.strerror()));
 //      }
+```
+Notice there is a limit (which depends on system) that the program can support, if the total number of samps users want to specify is going to be very large, the following revision is recommended:
+```
+
 ```
