@@ -75,10 +75,14 @@ while(num_acc_samps < total_num_samps){
       //use a small timeout for subsequent packets
       timeout = 0.1;
 
-      handle the error code
+      //handle the error code
       if (md.error_code == uhd::rx_metadata_t::ERROR_CODE_TIMEOUT) break;
       else if (md.error_code == uhd::rx_metadata_t::ERROR_CODE_OVERFLOW) continue;
       else if (md.error_code != uhd::rx_metadata_t::ERROR_CODE_NONE){
       throw std::runtime_error(str(boost::format("Recv'd samples %i\nReceiver error %s") % num_acc_samps % md.strerror()));
 }
+```
+where `samps_per_buff` can be set to a relatively small number or:
+```
+smap_er_buff = rx_stream->get_max_num_smaps(); // which actually it can go over this max
 ```
