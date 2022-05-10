@@ -52,5 +52,20 @@ areal = A([1:2:length(A)]);
 aimg  = A([2:2:length(A)]);
 ```
 # Further-Notice
+Some parts of the C++ code can be modified by users' intend
+```
+//    while(num_acc_samps < total_num_samps)
+//    {
+      //receive multi channel buffers
+      size_t num_rx_samps = rx_stream->recv( MultiDeviceBufferPtrs.at(mdbp_idx++), samps_per_buff, md, timeout);
+      
+      //use a small timeout for subsequent packets
+      timeout = 0.1;
 
-
+//      handle the error code
+//      if (md.error_code == uhd::rx_metadata_t::ERROR_CODE_TIMEOUT) break;
+//      else if (md.error_code == uhd::rx_metadata_t::ERROR_CODE_OVERFLOW) continue;
+//      else if (md.error_code != uhd::rx_metadata_t::ERROR_CODE_NONE){
+//	throw std::runtime_error(str(boost::format("Recv'd samples %i\nReceiver error %s") % num_acc_samps % md.strerror()));
+//      }
+```
